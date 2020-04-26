@@ -1,7 +1,11 @@
 import React from 'react';
 import ReactPWAIcon from './resources/img/react-pwa.png';
+import ApiMiddleWare from './api/index';
 
 export default class Server {
+    constructor({ addMiddleware }) {
+        addMiddleware(ApiMiddleWare);
+    }
     // eslint-disable-next-line
   apply(serverHandler) {
         serverHandler.hooks.beforeHtmlRender.tapPromise('DSNPreCache', async () => {
