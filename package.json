@@ -1,0 +1,65 @@
+{
+  "name": "react-pwa",
+  "version": "2.2.9",
+  "description": "A highly scalable, Progressive Web Application foundation with the best Developer Experience (DX).",
+  "scripts": {
+    "start": "pawjs --no-cache --env=development start",
+    "build": "pawjs --no-cache --env-config-path=./.prod.env --env=production build",
+    "build:dev": "pawjs --no-cache --env-config-path=./.dev.env --env=production build",
+    "lint": "eslint '*/**/*.{ts,tsx}' --quiet --fix",
+    "test": "pawjs --no-cache test"
+  },
+  "author": {
+    "name": "Atyantik Technologies",
+    "email": "admin@atyantik.com",
+    "url": "https://www.atyantik.com/"
+  },
+  "contributors": [
+    {
+      "name": "Victor Andrietta",
+      "email": "vitorandrietta@gmail.com"
+    }
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test && lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint --fix"
+    ]
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@pawjs/pawjs": "^3.0.2-beta.3",
+    "@pawjs/sass": "^2.2.5",
+    "@pawjs/srcset": "^2.1.6",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.6",
+    "bulma": "^0.8.2",
+    "cloudinary": "^1.21.0",
+    "eslint-import-resolver-webpack": "^0.12.1",
+    "eslint-plugin-react": "^7.19.0",
+    "fork-ts-checker-webpack-plugin": "^4.1.3",
+    "prop-types": "^15.7.2",
+    "snyk": "^1.305.1",
+    "universal-fetch": "^1.0.0"
+  },
+  "snyk": true,
+  "devDependencies": {
+    "@pawjs/image-optimizer": "^2.2.6",
+    "@types/react-router-dom": "^5.1.4",
+    "@typescript-eslint/eslint-plugin": "^2.29.0",
+    "@typescript-eslint/parser": "^2.29.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.1.7",
+    "prettier": "^2.0.5",
+    "ts-loader": "^7.0.1",
+    "typescript": "^3.8.3",
+    "webpack-bundle-analyzer": "^3.6.1"
+  }
+}
