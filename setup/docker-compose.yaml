@@ -6,7 +6,7 @@ services:
     volumes:
     - db_data:/var/lib/postgresql/data
     environment:
-      POSTGRES_PASSWORD: "divit"
+      POSTGRES_PASSWORD: postgrespassword
     networks:
     - postgres-compose-network
   pg-admin4:
@@ -29,7 +29,7 @@ services:
     - "postgres"
     restart: always
     environment:
-      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432/postgres
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432/divit
       HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
       HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
       ## uncomment next line to set an admin secret
