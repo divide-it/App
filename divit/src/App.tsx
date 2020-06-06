@@ -1,8 +1,26 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import gql from 'graphql-tag';
+import { useQuery } from '@apollo/react-hooks';
+
+const QUERY = gql`
+  query {
+    core_User {
+      id
+      email
+      password
+    }
+  }
+`;
 
 function App() {
+  const { loading, error, data } = useQuery(QUERY);
+
+  if (loading || error ) {
+    return <div />;
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -18,6 +36,9 @@ function App() {
         >
           Learn React
         </a>
+        <p>
+          DATA: { data.core_User[0].email }
+        </p>
       </header>
     </div>
   );
