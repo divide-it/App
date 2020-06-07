@@ -10,23 +10,23 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 const createApolloClient = () => {
-  return new ApolloClient({
-    link: new HttpLink({
-      uri: 'http://localhost:8080/v1/graphql'
-    }),
-    cache: new InMemoryCache()
-  })
+    return new ApolloClient({
+        link: new HttpLink({
+            uri: 'http://localhost:8080/v1/graphql',
+        }),
+        cache: new InMemoryCache(),
+    });
 };
 
 const client = createApolloClient();
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <ApolloProvider client={client}>
+            <App />
+        </ApolloProvider>
+    </React.StrictMode>,
+    document.getElementById('root'),
 );
 
 // If you want your app to work offline and load faster, you can change
