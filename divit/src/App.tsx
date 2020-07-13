@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
+import GroupListPage from './page/GroupListPage';
 
 const QUERY = gql`
   query {
@@ -18,7 +19,7 @@ function App() {
   const { loading, error, data } = useQuery(QUERY);
 
   if (loading || error ) {
-    return <div />;
+    return <div>Erro</div>;
   }
 
   return (
@@ -36,6 +37,7 @@ function App() {
         >
           Learn React
         </a>
+        <GroupListPage />
         <p>
           DATA: { data.core_User[0].email }
         </p>
