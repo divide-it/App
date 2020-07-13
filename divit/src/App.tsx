@@ -6,17 +6,17 @@ import { useQuery } from '@apollo/react-hooks';
 import GroupListPage from './page/GroupListPage';
 
 const QUERY = gql`
-  query {
-    core_User {
-      id
-      email
-      password
+    query {
+        core_User {
+            id
+            email
+            password
+        }
     }
-  }
 `;
 
 function App() {
-  const { loading, error, data } = useQuery(QUERY);
+    const { loading, error, data } = useQuery(QUERY);
 
   if (loading || error ) {
     return <div>Erro</div>;
