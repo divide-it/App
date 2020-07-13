@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import Router from './Router';
 import * as serviceWorker from './serviceWorker';
 
 import ApolloClient from 'apollo-client';
@@ -10,12 +10,12 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 const createApolloClient = () => {
-    return new ApolloClient({
-        link: new HttpLink({
-            uri: 'http://localhost:8080/v1/graphql',
-        }),
-        cache: new InMemoryCache(),
-    });
+  return new ApolloClient({
+    link: new HttpLink({
+      uri: 'http://localhost:8080/v1/graphql'
+    }),
+    cache: new InMemoryCache()
+  })
 };
 
 const client = createApolloClient();
@@ -23,7 +23,7 @@ const client = createApolloClient();
 ReactDOM.render(
     <React.StrictMode>
         <ApolloProvider client={client}>
-            <App />
+            <Router />
         </ApolloProvider>
     </React.StrictMode>,
     document.getElementById('root'),
