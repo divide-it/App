@@ -1,5 +1,6 @@
 import React from 'react';
 import gql from 'graphql-tag';
+import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 
 import { Group } from '../../model/Group';
@@ -34,7 +35,9 @@ class GroupListPageContainer extends React.PureComponent<GroupPageProps, {}> {
                     })}
                 </div>
                 <div className="group-list-add">
-                    <button className="group-list-add-button">+</button>
+                    <Link to='/groups/add' style={{ textDecoration: 'none' }}>
+                        <div className="group-list-add-button">+</div>
+                    </Link>
                 </div>
             </div>
         );
