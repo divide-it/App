@@ -1,11 +1,30 @@
 import React, { useState } from 'react';
+import gql from 'graphql-tag';
+import { useQuery } from '@apollo/react-hooks';
 
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    function myFunc(user: any, pass: any) {
-        alert(user + pass);
+    const QUERY = gql`
+        query {
+            core_User {
+                id
+                email
+                password
+            }
+        }
+    `;
+    const { loading, error, data } = useQuery(QUERY);
+
+    function myFunc(user: any, pass: any, dat: any) {
+        for (let i = 0; i < dat.core_User.length; i++) {
+            if (user == dat.core_User[i].email && pass == dat.core_User[i].password) {
+                alert('Login realizado com sucesso!');
+                return <div />;
+            }
+        }
+        alert('Login falhou!');
     }
 
     return (
@@ -30,8 +49,8 @@ function Login() {
                     </tr>
                     <tr>
                         <td>
-                            <button onClick={() => myFunc(username, password)}>Entrar</button>
-                            <button onClick={() => myFunc(username, password)}>Cadastrar</button>
+                            <button onClick={() => myFunc(username, password, data)}>Entrar</button>
+                            <button onClick={() => myFunc(username, password, data)}>Cadastrar</button>
                         </td>
                     </tr>
                 </tbody>
