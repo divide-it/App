@@ -33,6 +33,9 @@ class GroupListPageContainer extends React.PureComponent<GroupPageProps, {}> {
                         );
                     })}
                 </div>
+                <div className="group-list-add">
+                    <button className="group-list-add-button">+</button>
+                </div>
             </div>
         );
     }
