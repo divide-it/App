@@ -7,6 +7,7 @@ import {
 
 import App from './App';
 import GroupListPage from './page/GroupListPage';
+import { Login, SingUp} from './Login';
 
 export default function Router() {
     return (
@@ -14,6 +15,12 @@ export default function Router() {
             <Switch>
                 <Route path="/groups/add" component={App} />
                 <Route path="/groups" component={GroupListPage} />
+                <Route path="/login">
+                    <Login />
+                </Route>
+                <Route path="/singup">
+                    <SingUp />
+                </Route>
                 <Route path="/">
                     <App />
                 </Route>
