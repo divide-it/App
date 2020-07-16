@@ -12,9 +12,8 @@ export default function Router() {
     return (
         <BrowserRouter>
             <Switch>
-                <Route path="/groups">
-                    <GroupListPage />
-                </Route>
+                <Route path="/groups/add" component={App} />
+                <Route path="/groups" component={GroupListPage} />
                 <Route path="/">
                     <App />
                 </Route>
