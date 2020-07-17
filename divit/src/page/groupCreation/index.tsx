@@ -5,6 +5,8 @@ import './index.css';
 import { GroupMember } from '../../model/GroupMember';
 import { MemberItem } from '../../component/MemberItem';
 import { useMutation } from '@apollo/react-hooks';
+import { useLocation } from 'react-router-dom';
+import { useMonitorUserInvite } from '../../hooks/use-monitor-user-invite';
 
 const CREATE_GROUP = gql`
     mutation($date: date!, $description: String, $owner: bigint!, $title: String) {
@@ -61,9 +63,13 @@ const GroupMemberItem = ({
 };
 
 export const GroupCreationpage = (): JSX.Element => {
+    const location = useLocation();
+    const currentUserId = typeof location.state === 'number' ? location.state : 1;
     const [members, setMembers] = useState<GroupMember[]>([]);
     const [title, setTitle] = useState('');
     const groupCreated = useRef(false);
+
+    useMonitorUserInvite(currentUserId as number);
 
     const onTitleChange = useCallback((e: React.FormEvent<HTMLTextAreaElement>) => {
         setTitle(e.currentTarget.value);
@@ -133,7 +139,7 @@ export const GroupCreationpage = (): JSX.Element => {
 
     const createDivisionGroup = useCallback(() => {
         /*TODO retrieve login from owner id*/
-        createGroup({ variables: { date: new Date().toISOString(), title, owner: 1 } }).then((id) => {
+        createGroup({ variables: { date: new Date().toISOString(), title, owner: currentUserId } }).then((id) => {
             createDivisionMembers(id.data?.insert_core_DivisionGroup?.returning[0]?.id);
         });
     }, [createGroup, createDivisionMembers]);
