@@ -12,15 +12,9 @@ export default function Router() {
             <Switch>
                 <Route path="/groups/add" component={GroupCreationpage} />
                 <Route path="/groups" component={GroupListPage} />
-                <Route path="/login">
-                    <Login />
-                </Route>
-                <Route path="/singup">
-                    <SingUp />
-                </Route>
-                <Route path="/">
-                    <App />
-                </Route>
+                <Route path="/login" component={Login} />
+                <Route path="/singup" component={SingUp} />
+                <Route path="/" component={Login} />
             </Switch>
         </BrowserRouter>
     );
