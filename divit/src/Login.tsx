@@ -8,6 +8,16 @@ const Constants = {
     createGroupNav: 'Navigate to group creation',
 };
 
+const QUERY = gql`
+    query {
+        core_User {
+            id
+            email
+            password
+        }
+    }
+`;
+
 const Login = (): JSX.Element => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -19,27 +29,22 @@ const Login = (): JSX.Element => {
         });
     }, []);
 
-    const QUERY = gql`
-        query {
-            core_User {
-                id
-                email
-                password
-            }
-        }
-    `;
     const { loading, error, data } = useQuery(QUERY);
 
-    const myFunc = (user: any, pass: any, dat: any): void => {
-        for (let i = 0; i < dat.core_User.length; i++) {
-            if (user == dat.core_User[i].email && pass == dat.core_User[i].password) {
-                alert('Login realizado com sucesso!');
-                navigateToGroupCreation(dat.core_User[i].id);
-                return;
+    const myFunc = useCallback((): void => {
+        if (!loading && !error) {
+            for (let i = 0; i < data.core_User.length; i++) {
+                if (username == data.core_User[i].email && password == data.core_User[i].password) {
+                    alert('Login realizado com sucesso!');
+                    navigateToGroupCreation(data.core_User[i].id);
+                    return;
+                }
             }
+            alert('Login falhou!');
+        } else {
+            alert('Espere e tente novamente' + loading);
         }
-        alert('Login falhou!');
-    };
+    }, [loading, error, data, username, password]);
 
     return (
         <div>
@@ -63,7 +68,7 @@ const Login = (): JSX.Element => {
                     </tr>
                     <tr>
                         <td>
-                            <button onClick={() => myFunc(username, password, data)}>Entrar</button>
+                            <button onClick={myFunc}>Entrar</button>
                             <NavLink to="/singup"> Cadastrar </NavLink>
                         </td>
                     </tr>

@@ -20,9 +20,7 @@ export const useMonitorUserInvite = (id: number) => {
         variables: { userId: id },
     });
     useEffect(() => {
-        console.log(error);
         if (!loading && !error && id) {
-            alert(data);
             const newRegisters = data?.core_DivisionInvite.length;
             if (!divisionRegisters.current) {
                 divisionRegisters.current = newRegisters;
