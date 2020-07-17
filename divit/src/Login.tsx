@@ -1,12 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
+import { useHistory } from 'react-router';
 
+const Constants = {
+    createGroupNav: 'Navigate to group creation',
+};
 
-function Login() {
+const Login = (): JSX.Element => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const history = useHistory();
+    const navigateToGroupCreation = useCallback((id: number) => {
+        history.push({
+            pathname: '/groups/add',
+            state: id,
+        });
+    }, []);
 
     const QUERY = gql`
         query {
@@ -19,15 +30,16 @@ function Login() {
     `;
     const { loading, error, data } = useQuery(QUERY);
 
-    function myFunc(user: any, pass: any, dat: any) {
+    const myFunc = (user: any, pass: any, dat: any): void => {
         for (let i = 0; i < dat.core_User.length; i++) {
             if (user == dat.core_User[i].email && pass == dat.core_User[i].password) {
                 alert('Login realizado com sucesso!');
-                return <div />;
+                navigateToGroupCreation(dat.core_User[i].id);
+                return;
             }
         }
         alert('Login falhou!');
-    }
+    };
 
     return (
         <div>
@@ -59,7 +71,7 @@ function Login() {
             </table>
         </div>
     );
-}
+};
 
 function SingUp() {
     const [username, setUsername] = useState('');
@@ -79,16 +91,15 @@ function SingUp() {
 
     const INSERT = gql`
         mutation addUser($email: String!, $password: String!) {
-          insert_core_User(objects: {email:$email,
-            password:$password}) {
-            returning {
-              id
+            insert_core_User(objects: { email: $email, password: $password }) {
+                returning {
+                    id
+                }
             }
-          }
         }
     `;
     const [addNewUser] = useMutation(INSERT, {
-        refetchQueries: mutationResult => [{query: QUERY}]
+        refetchQueries: (mutationResult) => [{ query: QUERY }],
     });
 
     function myFunc(user: any, pass: any, pass_again: any, dat: any, addN: any) {
@@ -114,7 +125,7 @@ function SingUp() {
             alert('SingUp falhou!' + motivo);
         } else {
             alert('SingUp com Sucesso');
-            addN({variables : {email:user, password:pass} });
+            addN({ variables: { email: user, password: pass } });
         }
     }
     return (
@@ -147,7 +158,9 @@ function SingUp() {
                     </tr>
                     <tr>
                         <td>
-                            <button onClick={() => myFunc(username, password, password_again, data, addNewUser)}>Cadastrar</button>
+                            <button onClick={() => myFunc(username, password, password_again, data, addNewUser)}>
+                                Cadastrar
+                            </button>
                         </td>
                     </tr>
                 </tbody>
