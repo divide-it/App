@@ -70,6 +70,5 @@ export default function GroupEditPage({ match }: RouteComponentProps<TParams>) {
         return <div />;
     }
 
-    console.log(data)
     return <GroupEditPageContainer title={data.group[0].title} items={items} />
 }
