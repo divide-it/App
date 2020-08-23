@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { NavLink, Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
+import Button from 'react-bootstrap/Button';
 
 const Constants = {
     createGroupNav: 'Navigate to group creation',
@@ -47,15 +48,40 @@ const Login = (): JSX.Element => {
     }, [loading, error, data, username, password]);
 
     return (
-        <div>
-            <table>
+        <div className="section-1-container section-container">
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <a className="navbar-brand" href="#">
+                    Div-it
+                </a>
+                <button
+                    className="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse" id="navbarNav"></div>
+            </nav>
+            <table
+                className="form-group"
+                style={{ margin: 'auto', marginTop: 200, boxShadow: '0 10px 40px 0 rgba(0,0,0,0.2)' }}
+            >
                 <tbody>
                     <tr>
                         <td>Email:</td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="email" onChange={(event) => setUsername(event.target.value)} />
+                            <input
+                                type="email"
+                                className="form-control"
+                                onChange={(event) => setUsername(event.target.value)}
+                                style={{ marginBottom: 30 }}
+                            />
                         </td>
                     </tr>
                     <tr>
@@ -63,12 +89,18 @@ const Login = (): JSX.Element => {
                     </tr>
                     <tr>
                         <td>
-                            <input type="password" onChange={(event) => setPassword(event.target.value)} />
+                            <input
+                                type="password"
+                                onChange={(event) => setPassword(event.target.value)}
+                                style={{ width: 300 }}
+                            />
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <button onClick={myFunc}>Entrar</button>
+                        <td style={{ paddingTop: 30 }}>
+                            <Button onClick={myFunc} style={{ marginRight: 20, marginLeft: 80 }}>
+                                Entrar
+                            </Button>
                             <NavLink to="/singup"> Cadastrar </NavLink>
                         </td>
                     </tr>
@@ -134,8 +166,28 @@ function SingUp() {
         }
     }
     return (
-        <div>
-            <table>
+        <div className="section-1-container section-container">
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <a className="navbar-brand" href="#">
+                    Div-it
+                </a>
+                <button
+                    className="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse" id="navbarNav"></div>
+            </nav>
+            <table
+                className="form-group"
+                style={{ margin: 'auto', marginTop: 200, boxShadow: '0 10px 40px 0 rgba(0,0,0,0.2)' }}
+            >
                 <tbody>
                     <tr>
                         <td>Email:</td>
@@ -162,7 +214,7 @@ function SingUp() {
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td style={{ paddingTop: 30 }}>
                             <button onClick={() => myFunc(username, password, password_again, data, addNewUser)}>
                                 Cadastrar
                             </button>

@@ -7,6 +7,7 @@ import { MemberItem } from '../../component/MemberItem';
 import { useMutation } from '@apollo/react-hooks';
 import { useLocation } from 'react-router-dom';
 import { useMonitorUserInvite } from '../../hooks/use-monitor-user-invite';
+import Button from 'react-bootstrap/Button';
 
 const CREATE_GROUP = gql`
     mutation($date: date!, $description: String, $owner: bigint!, $title: String) {
@@ -155,14 +156,55 @@ export const GroupCreationpage = (): JSX.Element => {
 
     return (
         <div>
-            <textarea onChange={onTitleChange} />
-            <div>
-                {items.map((item, index) => (
-                    <div key={index}>{item}</div>
-                ))}
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <a className="navbar-brand" href="/">
+                    Div-it
+                </a>
+                <button
+                    className="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse" id="navbarNav">
+                    <ul className="navbar-nav">
+                        <li className="nav-item">
+                            <a className="nav-link" href="/groups">
+                                Meus Grupos
+                            </a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="/groups/add">
+                                Criar Grupo
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div
+                className="section-1-container section-container form-group"
+                style={{ marginLeft: '45%', marginTop: '5%' }}
+            >
+                <textarea onChange={onTitleChange} placeholder="Descrição do grupo" />
+                <div>
+                    {items.map((item, index) => (
+                        <div key={index}>{item}</div>
+                    ))}
+                </div>
+                <div style={{ marginLeft: '-40px', marginTop: '20px' }}>
+                    <Button onClick={addMember} style={{ marginRight: '10px' }}>
+                        {Constants.AddMember}
+                    </Button>
+                    <Button type="submit" onClick={createGroupCallback}>
+                        {Constants.CrateGroup}
+                    </Button>
+                </div>
             </div>
-            <button onClick={addMember}>{Constants.AddMember}</button>
-            <button onClick={createGroupCallback}>{Constants.CrateGroup}</button>
         </div>
     );
 };

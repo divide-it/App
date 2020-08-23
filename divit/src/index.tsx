@@ -8,6 +8,7 @@ import ApolloClient from 'apollo-client';
 import { WebSocketLink } from 'apollo-link-ws';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const createApolloClient = () => {
     return new ApolloClient({
