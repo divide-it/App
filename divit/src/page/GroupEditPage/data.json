@@ -2,16 +2,16 @@
     {
         "user": "Édolas",
         "name": "Pizza",
-        "value": 90.00
+        "value": 90.0
     },
     {
         "user": "Panna",
         "name": "Bebidas",
-        "value": 52.50
+        "value": 52.5
     },
     {
         "user": "Andrius",
         "name": "Bolo",
-        "value": 500.00
+        "value": 500.0
     }
 ]
