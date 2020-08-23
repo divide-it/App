@@ -3,6 +3,12 @@
     padding: 24px;
 }
 
+.group-edit-name {
+    color: #47525E;
+    font-size: 36px;
+    text-align: center;
+}
+
 .group-edit-info {
     display: flex;
     justify-items: flex-start;
