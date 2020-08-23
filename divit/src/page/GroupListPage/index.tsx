@@ -30,7 +30,9 @@ class GroupListPageContainer extends React.PureComponent<GroupPageProps, {}> {
                 <div className="group-list-container">
                     { groups.map(g => {
                         return (
-                            <GroupCard key={g.id} group={g} />
+                            <Link to={`/groups/${g.id}/edit`} style={{ width: '47%', textDecoration: 'none' }}>
+                                <GroupCard key={g.id} group={g} />
+                            </Link>
                         );
                     })}
                 </div>

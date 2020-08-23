@@ -1,0 +1,17 @@
+[
+    {
+        "user": "Édolas",
+        "name": "Pizza",
+        "value": 90.00
+    },
+    {
+        "user": "Panna",
+        "name": "Bebidas",
+        "value": 52.50
+    },
+    {
+        "user": "Andrius",
+        "name": "Bolo",
+        "value": 500.00
+    }
+]
