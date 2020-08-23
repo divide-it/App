@@ -8,6 +8,7 @@ import { useMutation } from '@apollo/react-hooks';
 import { useLocation } from 'react-router-dom';
 import { useMonitorUserInvite } from '../../hooks/use-monitor-user-invite';
 import Button from 'react-bootstrap/Button';
+import { useHistory } from 'react-router';
 
 const CREATE_GROUP = gql`
     mutation($date: date!, $description: String, $owner: bigint!, $title: String) {
@@ -150,8 +151,15 @@ export const GroupCreationpage = (): JSX.Element => {
         groupCreated.current = true;
     }, [createDivisionGroup, createDivisionMembers]);
 
+    const history = useHistory();
+    const navigateToGroupList = useCallback(() => {
+        history.push({
+            pathname: '/groups',
+        });
+    }, []);
+
     if (groupCreated.current) {
-        return <h2>{Constants.GroupCreated}</h2>;
+        navigateToGroupList();
     }
 
     return (
